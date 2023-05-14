@@ -8,6 +8,7 @@ use yii\widgets\ActiveForm;
 /** @var yii\widgets\ActiveForm $form */
 /** @var array $restaurantsIdsAndNames */
 /** @var array $usersIdsAndNames */
+/** @var array $requestsStatusesIdsAndNames */
 ?>
 
 <div class="request-form">
@@ -18,7 +19,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'user_id')->dropDownList($usersIdsAndNames) ?>
 
-    <?= $form->field($model, 'status_id')->textInput() ?>
+    <?= $form->field($model, 'status_id')->dropDownList($requestsStatusesIdsAndNames) ?>
 
     <?= $form->field($model, 'date_created')->textInput() ?>
 

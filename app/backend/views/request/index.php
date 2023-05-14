@@ -1,6 +1,7 @@
 <?php
 
 use common\models\active_records\Request;
+use yii\bootstrap5\Breadcrumbs;
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\grid\ActionColumn;
@@ -14,7 +15,11 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="request-index">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+    <h1><?= HTML::encode($this->title)?></h1>
+
+    <?= Breadcrumbs::widget([
+        'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
+    ]) ?>
 
     <p>
         <?= Html::a('Создать заявку', ['create'], ['class' => 'btn btn-success']) ?>
@@ -61,6 +66,4 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
         ],
     ]); ?>
-
-
 </div>

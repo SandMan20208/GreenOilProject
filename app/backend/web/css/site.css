@@ -92,7 +92,7 @@ a.desc:after {
 .site-index{
     display:flex;
     height: 100vh;
-    align-items: center;
+    margin-top: 30vh;
     justify-content: center;
 }
 

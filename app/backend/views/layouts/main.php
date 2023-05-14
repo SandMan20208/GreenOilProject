@@ -60,10 +60,6 @@ AppAsset::register($this);
     </div>
     <?php $this->beginBody() ?>
     <div class="main-container">
-        <h1><?= Html::encode($this->title) ?></h1>
-        <?= Breadcrumbs::widget([
-            'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
-        ]) ?>
         <?= $content ?>
     </div>
     <?php $this->endBody() ?>

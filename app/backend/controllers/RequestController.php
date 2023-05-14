@@ -2,9 +2,12 @@
 
 namespace backend\controllers;
 
+use app\common\components\request\RequestCreator;
 use common\models\active_records\Request;
+use common\models\active_records\RequestStatus;
 use common\models\active_records\Restaurant;
 use common\models\active_records\User;
+use Yii;
 use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -82,12 +85,14 @@ class RequestController extends Controller
         $model = new Request();
         $restaurantsIdsAndNames = Restaurant::getRestaurantsIdsAndNames();
         $usersIdsAndNames = User::getUsersIdsAndNames();
-        if ($this->request->isPost) {
-            if ($model->load($this->request->post()) && $model->save()) {
-                return $this->redirect(['view', 'id' => $model->id]);
+
+        if ($this->request->isPost && $model->load(Yii::$app->request->post())) {
+            $requestCreator = new RequestCreator($model);
+            if ($requestCreator->create()) {
+                Yii::$app->session->setFlash('success', 'Заявка создана успешно.');
+            } else {
+                Yii::$app->session->setFlash('success', 'Ошибка создания заявки.');
             }
-        } else {
-            $model->loadDefaultValues();
         }
 
         return $this->render('create', [
@@ -104,16 +109,28 @@ class RequestController extends Controller
      * @return string|\yii\web\Response
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionUpdate($id)
+    public function actionUpdate(int $id)
     {
         $model = $this->findModel($id);
 
-        if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        if ($this->request->isPost && $model->load(Yii::$app->request->post())) {
+            if ($model->save()) {
+                Yii::$app->session->setFlash('success', 'Заявка создана успешно.');
+                return $this->redirect(['view', 'id' => $model->id]);
+            } else {
+                Yii::$app->session->setFlash('success', 'Ошибка создания заявки.');
+            }
         }
+
+        $restaurantsIdsAndNames = Restaurant::getRestaurantsIdsAndNames();
+        $usersIdsAndNames = User::getUsersIdsAndNames();
+        $requestStatusesIdsAndNames = RequestStatus::getRequestStatusesIdsAndNames();
 
         return $this->render('update', [
             'model' => $model,
+            'restaurantsIdsAndNames' => $restaurantsIdsAndNames,
+            'usersIdsAndNames' => $usersIdsAndNames,
+            'requestStatusesIdsAndNames' => $requestStatusesIdsAndNames,
         ]);
     }
 
@@ -124,7 +141,7 @@ class RequestController extends Controller
      * @return \yii\web\Response
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionDelete($id)
+    public function actionDelete(int $id)
     {
         $this->findModel($id)->delete();
 

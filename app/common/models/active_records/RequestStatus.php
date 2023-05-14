@@ -3,6 +3,7 @@
 namespace common\models\active_records;
 
 use Yii;
+use yii\helpers\ArrayHelper;
 
 /**
  * This is the model class for table "request_status".
@@ -18,6 +19,9 @@ class RequestStatus extends \yii\db\ActiveRecord
     /**
      * {@inheritdoc}
      */
+
+    public const STATUS_NEW_ID = 1;
+    public const STATUS_EXECUTED_ID = 2;
     public static function tableName()
     {
         return 'request_status';
@@ -53,5 +57,11 @@ class RequestStatus extends \yii\db\ActiveRecord
     public function getRequests()
     {
         return $this->hasMany(Request::class, ['status_id' => 'id']);
+    }
+
+    public static function getRequestStatusesIdsAndNames(): array
+    {
+        $requestStatuses = RequestStatus::find()->all();
+        return ArrayHelper::map($requestStatuses, 'id', 'name');
     }
 }

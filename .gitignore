@@ -1,1 +1,3 @@
 docker/database
+app/log/frontend-access.log
+app/log/frontend-error.log

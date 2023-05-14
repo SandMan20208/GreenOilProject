@@ -1,8 +1,8 @@
 <?php
 
 use yii\bootstrap5\ActiveForm;
+use yii\bootstrap5\Breadcrumbs;
 use yii\helpers\Html;
-use yii\widgets\Breadcrumbs;
 
 /** @var yii\web\View $this */
 /** @var common\models\active_records\Request $model */
@@ -14,6 +14,25 @@ $this->title = 'Создание заявки';
 $this->params['breadcrumbs'][] = ['label' => 'Заявки', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
+
+<h1><?= HTML::encode($this->title)?></h1>
+
+<?= Breadcrumbs::widget([
+    'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
+]) ?>
+
+<?php if (Yii::$app->session->hasFlash('success')): ?>
+    <div class="alert alert-success alert-dismissable">
+        <?= Yii::$app->session->getFlash('success') ?>
+    </div>
+<?php endif; ?>
+
+<?php if (Yii::$app->session->hasFlash('error')): ?>
+    <div class="alert alert-danger alert-dismissable">
+        <?= Yii::$app->session->getFlash('error') ?>
+    </div>
+<?php endif; ?>
+
 <div class="request-create">
 
     <div class="request-form">
