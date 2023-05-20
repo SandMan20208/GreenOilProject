@@ -32,6 +32,7 @@ class Container extends \yii\db\ActiveRecord
         return [
             [['weight', 'volume'], 'integer'],
             [['name'], 'string', 'max' => 50],
+            [['weight', 'volume', 'name'], 'required'],
         ];
     }
 

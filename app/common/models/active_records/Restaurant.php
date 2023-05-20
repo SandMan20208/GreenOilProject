@@ -36,6 +36,7 @@ class Restaurant extends \yii\db\ActiveRecord
             [['name'], 'string', 'max' => 100],
             [['address'], 'string', 'max' => 150],
             [['contact_phone'], 'string', 'max' => 12],
+            [['name', 'city_id', 'address'], 'required'],
             [['city_id'], 'exist', 'skipOnError' => true, 'targetClass' => City::class, 'targetAttribute' => ['city_id' => 'id']],
         ];
     }

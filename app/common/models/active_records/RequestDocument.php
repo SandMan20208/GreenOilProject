@@ -35,6 +35,7 @@ class RequestDocument extends \yii\db\ActiveRecord
             [['file_path'], 'string', 'max' => 300],
             [['document_type_id'], 'exist', 'skipOnError' => true, 'targetClass' => DocumentType::class, 'targetAttribute' => ['document_type_id' => 'id']],
             [['request_id'], 'exist', 'skipOnError' => true, 'targetClass' => Request::class, 'targetAttribute' => ['request_id' => 'id']],
+            [['file_path','document_type_id', 'request_id'], 'required'],
         ];
     }
 

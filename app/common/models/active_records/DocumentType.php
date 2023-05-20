@@ -29,6 +29,7 @@ class DocumentType extends \yii\db\ActiveRecord
     {
         return [
             [['type'], 'string', 'max' => 100],
+            [['type'],'required'],
         ];
     }
 

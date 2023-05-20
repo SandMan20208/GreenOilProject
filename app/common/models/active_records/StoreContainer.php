@@ -33,6 +33,7 @@ class StoreContainer extends \yii\db\ActiveRecord
     {
         return [
             [['store_id', 'container_id', 'count_of_empty', 'count_of_full'], 'integer'],
+            [['store_id', 'container_id', 'count_of_empty', 'count_of_full'], 'required'],
             [['store_id'], 'exist', 'skipOnError' => true, 'targetClass' => Store::class, 'targetAttribute' => ['store_id' => 'id']],
             [['container_id'], 'exist', 'skipOnError' => true, 'targetClass' => Container::class, 'targetAttribute' => ['container_id' => 'id']],
         ];

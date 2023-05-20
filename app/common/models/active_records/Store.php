@@ -9,6 +9,7 @@ use Yii;
  *
  * @property int $id
  * @property string $name
+ * @property int $city_id
  *
  * @property StoreContainer[] $storeContainers
  */
@@ -28,8 +29,9 @@ class Store extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name'], 'required'],
+            [['name', 'city_id'], 'required'],
             [['name'], 'string', 'max' => 30],
+            [['city_id'], 'integer'],
         ];
     }
 
@@ -41,6 +43,7 @@ class Store extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'name' => 'Название',
+            'city_id' => 'ID склада'
         ];
     }
 

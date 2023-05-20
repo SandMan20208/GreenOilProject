@@ -38,6 +38,7 @@ class User extends \yii\db\ActiveRecord
             [['phone'], 'integer'],
             [['login', 'password', 'name', 'car_model'], 'string', 'max' => 255],
             [['login'], 'unique'],
+            [['login', 'password', 'name'], 'required']
         ];
     }
 

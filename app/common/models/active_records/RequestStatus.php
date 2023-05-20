@@ -34,6 +34,7 @@ class RequestStatus extends \yii\db\ActiveRecord
     {
         return [
             [['status', 'status_name'], 'string', 'max' => 25],
+            [['status', 'status_name'], 'required']
         ];
     }
 
