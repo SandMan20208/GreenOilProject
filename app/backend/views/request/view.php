@@ -44,16 +44,19 @@ $this->params['breadcrumbs'][] = $this->title;
                 }
             ],
             'user_id' => [
-                    'label' => 'Исполнитель',
-                    'value' => function ($request) {
-                        /** @var Request $request */
-                        return $request->user->name;
-                    }
+                'label' => 'Исполнитель',
+                'value' => function ($request) {
+                    /** @var Request $request */
+                    return $request->user->name;
+                }
             ],
-            'status_id' => function($request){
-                /** @var Request $request */
-                return $request->status->status_name;
-            },
+            'status_id' => [
+                'label' => 'Статус',
+                'value' => function ($request) {
+                    /** @var Request $request */
+                    return $request->status->status_name;
+                }
+            ],
             'date_created',
             'planned_visit_date',
             'close_date',

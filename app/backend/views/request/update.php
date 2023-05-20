@@ -1,9 +1,14 @@
 <?php
 
+use common\models\active_records\Request;
+use yii\bootstrap5\Breadcrumbs;
 use yii\helpers\Html;
 
 /** @var yii\web\View $this */
-/** @var common\models\active_records\Request $model */
+/** @var Request $model */
+/** @var Request $restaurantsIdsAndNames */
+/** @var Request $usersIdsAndNames */
+/** @var Request $requestStatusesIdsAndNames */
 
 $this->title = 'Редактирование заявки №' . $model->id;
 $this->params['breadcrumbs'][] = ['label' => 'Заявки', 'url' => ['index']];
@@ -14,8 +19,15 @@ $this->params['breadcrumbs'][] = 'Редактирование';
 
     <h1><?= Html::encode($this->title) ?></h1>
 
+    <?= Breadcrumbs::widget([
+        'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
+    ]) ?>
+
     <?= $this->render('_form', [
         'model' => $model,
+        'restaurantsIdsAndNames' => $restaurantsIdsAndNames,
+        'usersIdsAndNames' => $usersIdsAndNames,
+        'requestStatusesIdsAndNames' => $requestStatusesIdsAndNames,
     ]) ?>
 
 </div>

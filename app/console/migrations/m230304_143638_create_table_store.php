@@ -19,6 +19,16 @@ class m230304_143638_create_table_store extends Migration
                 'city_id' => $this->integer()->notNull(),
             ]
         );
+
+        $this->addForeignKey(
+            'fk-store-city_id',
+            'store',
+            'city_id',
+            'store',
+            'id',
+            null,
+            'CASCADE'
+        );
     }
 
     /**
@@ -26,6 +36,7 @@ class m230304_143638_create_table_store extends Migration
      */
     public function safeDown()
     {
+        $this->dropForeignKey('fk-store-city_id', 'store');
         $this->dropTable('store');
     }
 

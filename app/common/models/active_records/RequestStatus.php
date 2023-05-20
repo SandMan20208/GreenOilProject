@@ -21,7 +21,9 @@ class RequestStatus extends \yii\db\ActiveRecord
      */
 
     public const STATUS_NEW_ID = 1;
-    public const STATUS_EXECUTED_ID = 2;
+    public const STATUS_PROCESSED_ID = 2;
+    public const STATUS_EXECUTED_ID = 3;
+    public const STATUS_CLOSED_ID = 4;
     public static function tableName()
     {
         return 'request_status';
@@ -63,6 +65,6 @@ class RequestStatus extends \yii\db\ActiveRecord
     public static function getRequestStatusesIdsAndNames(): array
     {
         $requestStatuses = RequestStatus::find()->all();
-        return ArrayHelper::map($requestStatuses, 'id', 'name');
+        return ArrayHelper::map($requestStatuses, 'id', 'status_name');
     }
 }

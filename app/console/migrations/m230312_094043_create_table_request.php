@@ -20,7 +20,7 @@ class m230312_094043_create_table_request extends Migration
                     'restaurant_id' => $this->integer()->notNull(),
                     'user_id' => $this->integer(),
                     'status_id' => $this->integer()->notNull(),
-                    'date_created' => $this->integer(),
+                    'date_created' => $this->dateTime(),
                     'planned_visit_date' => $this->dateTime(),
                     'close_date' => $this->dateTime(),
                     'deleted' => $this->integer(4),

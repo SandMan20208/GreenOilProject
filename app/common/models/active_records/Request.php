@@ -61,7 +61,7 @@ class Request extends \yii\db\ActiveRecord
             'status_id' => 'Status ID',
             'date_created' => 'Дата создания',
             'planned_visit_date' => 'Планируемая дата визита',
-            'close_date' => 'Дата выполнения',
+            'close_date' => 'Дата закрытия',
             'deleted' => 'Deleted',
             'comment' => 'Комментарий',
         ];

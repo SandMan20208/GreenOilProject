@@ -1,5 +1,6 @@
 <?php
 
+use common\components\request\RequestStatusHtmlGenerator;
 use common\models\active_records\Request;
 use yii\bootstrap5\Breadcrumbs;
 use yii\helpers\Html;
@@ -29,9 +30,17 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
-
+//            ['class' => 'yii\grid\SerialColumn'],
             'id',
+            'status_id' => [
+                'format' => 'raw',
+                'label' => 'Статус',
+                'value' => function ($request) {
+                    /** @var Request $request */
+                    $requestStatusHtmlGenerator = new RequestStatusHtmlGenerator($request);
+                    return $requestStatusHtmlGenerator->generate();
+                },
+            ],
             'restaurant_id' => [
                 'label' => 'Заведение',
                 'value' => function ($request) {
@@ -44,13 +53,6 @@ $this->params['breadcrumbs'][] = $this->title;
                 'value' => function ($request) {
                     /** @var Request $request */
                     return $request->user->name;
-                },
-            ],
-            'status_id' => [
-                'label' => 'Статус',
-                'value' => function ($request) {
-                    /** @var Request $request */
-                    return $request->status->status_name;
                 },
             ],
             'date_created',
