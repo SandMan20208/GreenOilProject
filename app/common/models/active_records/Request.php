@@ -38,13 +38,14 @@ class Request extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['restaurant_id', 'user_id', 'status_id', 'date_created', 'deleted'], 'integer'],
+            [['restaurant_id', 'user_id', 'status_id', 'deleted'], 'integer'],
             [['planned_visit_date', 'close_date'], 'safe'],
             [['comment'], 'string', 'max' => 150],
             [['status_id'], 'exist', 'skipOnError' => true, 'targetClass' => RequestStatus::class, 'targetAttribute' => ['status_id' => 'id']],
             [['restaurant_id'], 'exist', 'skipOnError' => true, 'targetClass' => Restaurant::class, 'targetAttribute' => ['restaurant_id' => 'id']],
             [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::class, 'targetAttribute' => ['user_id' => 'id']],
             [['restaurant_id', 'user_id', 'status_id', 'date_created', 'deleted','planned_visit_date'], 'required'],
+            [['date_created'], 'safe']
         ];
     }
 

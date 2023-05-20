@@ -6,6 +6,7 @@ use yii\widgets\ActiveForm;
 /** @var yii\web\View $this */
 /** @var common\models\active_records\Store $model */
 /** @var yii\widgets\ActiveForm $form */
+/** @var array $cityIdsAndNames */
 ?>
 
 <div class="store-form">
@@ -13,6 +14,7 @@ use yii\widgets\ActiveForm;
     <?php $form = ActiveForm::begin(); ?>
 
     <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'city_id')->dropDownList($cityIdsAndNames)->label('Город') ?>
     <br/>
     <div class="form-group">
         <?= Html::submitButton('Сохранить', ['class' => 'btn btn-success']) ?>

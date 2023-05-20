@@ -34,6 +34,13 @@ $this->params['breadcrumbs'][] = $this->title;
 
             'id',
             'name',
+            'city_id' => [
+                    'label' => 'Город',
+                    'value' => function($store) {
+                        /** @var Store $store */
+                        return $store->city->name;
+                    }
+            ],
             [
                 'class' => ActionColumn::className(),
                 'urlCreator' => function ($action, Store $model, $key, $index, $column) {

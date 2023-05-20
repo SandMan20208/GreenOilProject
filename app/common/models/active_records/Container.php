@@ -43,9 +43,9 @@ class Container extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'name' => 'Name',
-            'weight' => 'Weight',
-            'volume' => 'Volume In Liters',
+            'name' => 'Название',
+            'weight' => 'Вес в кг',
+            'volume' => 'Объем в литрах',
         ];
     }
 

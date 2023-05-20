@@ -1,6 +1,7 @@
 <?php
 
 use common\models\active_records\Restaurant;
+use yii\bootstrap5\Breadcrumbs;
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\grid\ActionColumn;
@@ -9,15 +10,19 @@ use yii\widgets\Pjax;
 /** @var yii\web\View $this */
 /** @var yii\data\ActiveDataProvider $dataProvider */
 
-$this->title = 'Restaurants';
+$this->title = 'Заведения';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="restaurant-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
+    <?= Breadcrumbs::widget([
+        'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
+    ]) ?>
+
     <p>
-        <?= Html::a('Create Restaurant', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Добавить заведение', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?php Pjax::begin(); ?>
@@ -29,7 +34,13 @@ $this->params['breadcrumbs'][] = $this->title;
 
             'id',
             'name',
-            'city_id',
+            'city_id' => [
+                    'label' => 'Город',
+                    'value' => function ($restaurant) {
+                        /** @var Restaurant $restaurant */
+                        return $restaurant->city->name;
+                    }
+            ],
             'address',
             'contact_phone',
             [

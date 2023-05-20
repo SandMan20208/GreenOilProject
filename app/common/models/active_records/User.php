@@ -2,7 +2,6 @@
 
 namespace common\models\active_records;
 
-use Yii;
 use yii\helpers\ArrayHelper;
 
 /**
@@ -49,11 +48,11 @@ class User extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'login' => 'Login',
-            'password' => 'Password',
-            'name' => 'Name',
-            'phone' => 'Phone',
-            'car_model' => 'Car Model',
+            'login' => 'Логин',
+            'password' => 'Пароль',
+            'name' => 'ФИО',
+            'phone' => 'Телефон',
+            'car_model' => 'Автомобиль',
         ];
     }
 

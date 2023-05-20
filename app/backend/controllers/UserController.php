@@ -2,17 +2,16 @@
 
 namespace backend\controllers;
 
-use common\models\active_records\City;
-use common\models\active_records\Store;
+use common\models\active_records\User;
 use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * StoreController implements the CRUD actions for Store model.
+ * UserController implements the CRUD actions for User model.
  */
-class StoreController extends Controller
+class UserController extends Controller
 {
     /**
      * @inheritDoc
@@ -33,14 +32,14 @@ class StoreController extends Controller
     }
 
     /**
-     * Lists all Store models.
+     * Lists all User models.
      *
      * @return string
      */
     public function actionIndex()
     {
         $dataProvider = new ActiveDataProvider([
-            'query' => Store::find(),
+            'query' => User::find(),
             /*
             'pagination' => [
                 'pageSize' => 50
@@ -59,7 +58,7 @@ class StoreController extends Controller
     }
 
     /**
-     * Displays a single Store model.
+     * Displays a single User model.
      * @param int $id ID
      * @return string
      * @throws NotFoundHttpException if the model cannot be found
@@ -72,14 +71,13 @@ class StoreController extends Controller
     }
 
     /**
-     * Creates a new Store model.
+     * Creates a new User model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return string|\yii\web\Response
      */
     public function actionCreate()
     {
-        $model = new Store();
-        $cityIdsAndNames = City::getCityIdsAndNames();
+        $model = new User();
 
         if ($this->request->isPost) {
             if ($model->load($this->request->post()) && $model->save()) {
@@ -91,12 +89,11 @@ class StoreController extends Controller
 
         return $this->render('create', [
             'model' => $model,
-            'cityIdsAndNames' => $cityIdsAndNames,
         ]);
     }
 
     /**
-     * Updates an existing Store model.
+     * Updates an existing User model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param int $id ID
      * @return string|\yii\web\Response
@@ -116,7 +113,7 @@ class StoreController extends Controller
     }
 
     /**
-     * Deletes an existing Store model.
+     * Deletes an existing User model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param int $id ID
      * @return \yii\web\Response
@@ -130,15 +127,15 @@ class StoreController extends Controller
     }
 
     /**
-     * Finds the Store model based on its primary key value.
+     * Finds the User model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param int $id ID
-     * @return Store the loaded model
+     * @return User the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Store::findOne(['id' => $id])) !== null) {
+        if (($model = User::findOne(['id' => $id])) !== null) {
             return $model;
         }
 

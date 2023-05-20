@@ -1,5 +1,6 @@
 <?php
 
+use common\models\active_records\Request;
 use yii\bootstrap5\Breadcrumbs;
 use yii\helpers\Html;
 use yii\widgets\DetailView;
@@ -35,13 +36,27 @@ $this->params['breadcrumbs'][] = $this->title;
         'model' => $model,
         'attributes' => [
             'id',
-            'restaurant_id',
-            'user_id',
-            'status_id',
+            'restaurant_id' => [
+                'label' => 'Заведение',
+                'value' => function ($request) {
+                    /** @var Request $request */
+                    return $request->restaurant->name;
+                }
+            ],
+            'user_id' => [
+                    'label' => 'Исполнитель',
+                    'value' => function ($request) {
+                        /** @var Request $request */
+                        return $request->user->name;
+                    }
+            ],
+            'status_id' => function($request){
+                /** @var Request $request */
+                return $request->status->status_name;
+            },
             'date_created',
             'planned_visit_date',
             'close_date',
-            'deleted',
             'comment',
         ],
     ]) ?>

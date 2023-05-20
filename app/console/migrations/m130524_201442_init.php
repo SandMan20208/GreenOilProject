@@ -17,7 +17,7 @@ class m130524_201442_init extends Migration
             'login' => $this->string()->notNull()->unique(),
             'password' => $this->string()->notNull(),
             'name' => $this->string(),
-            'phone' => $this->integer(12),
+            'phone' => $this->string(11),
             'car_model' => $this->string()
         ], $tableOptions);
     }

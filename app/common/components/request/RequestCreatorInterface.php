@@ -1,8 +1,6 @@
 <?php
 
-namespace app\common\components\request;
-
-use common\models\active_records\Request;
+namespace common\components\request;
 
 interface RequestCreatorInterface
 {

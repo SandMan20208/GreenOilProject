@@ -2,6 +2,7 @@
 
 namespace backend\controllers;
 
+use common\models\active_records\City;
 use common\models\active_records\Restaurant;
 use yii\data\ActiveDataProvider;
 use yii\web\Controller;
@@ -78,6 +79,7 @@ class RestaurantController extends Controller
     public function actionCreate()
     {
         $model = new Restaurant();
+        $cityIdsAndNames = City::getCityIdsAndNames();
 
         if ($this->request->isPost) {
             if ($model->load($this->request->post()) && $model->save()) {
@@ -89,6 +91,7 @@ class RestaurantController extends Controller
 
         return $this->render('create', [
             'model' => $model,
+            'cityIdsAndNames' => $cityIdsAndNames,
         ]);
     }
 

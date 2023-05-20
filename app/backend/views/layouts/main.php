@@ -50,10 +50,10 @@ AppAsset::register($this);
                     <?= Html::a('Города', ['cities/index'], ['class' => 'nav-link text-white nav-hover']) ?>
                 </li>
                 <li>
-                    <?= Html::a('Пользователи', ['users/index'], ['class' => 'nav-link text-white nav-hover']) ?>
+                    <?= Html::a('Пользователи', ['user/index'], ['class' => 'nav-link text-white nav-hover']) ?>
                 </li>
                 <li>
-                    <?= Html::a('Отчеты', ['users/index'], ['class' => 'nav-link text-white nav-hover']) ?>
+                    <?= Html::a('Отчеты', ['report/index'], ['class' => 'nav-link text-white nav-hover']) ?>
                 </li>
             </ul>
         </div>

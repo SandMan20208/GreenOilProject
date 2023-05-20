@@ -1,13 +1,14 @@
 <?php
 
+use common\models\active_records\Restaurant;
 use yii\helpers\Html;
 use yii\widgets\DetailView;
 
 /** @var yii\web\View $this */
-/** @var common\models\active_records\Restaurant $model */
+/** @var Restaurant $model */
 
 $this->title = $model->name;
-$this->params['breadcrumbs'][] = ['label' => 'Restaurants', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'Заведение', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
 ?>
@@ -16,11 +17,11 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Delete', ['delete', 'id' => $model->id], [
+        <?= Html::a('Редактировать', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a('Удалить', ['delete', 'id' => $model->id], [
             'class' => 'btn btn-danger',
             'data' => [
-                'confirm' => 'Are you sure you want to delete this item?',
+                'confirm' => 'Удалить заведение?',
                 'method' => 'post',
             ],
         ]) ?>
@@ -31,7 +32,13 @@ $this->params['breadcrumbs'][] = $this->title;
         'attributes' => [
             'id',
             'name',
-            'city_id',
+            'city_id' => [
+                    'label' => 'Город',
+                    'value' => function($restaurant){
+                        /** @var Restaurant $restaurant */
+                        return $restaurant->city->name;
+                    }
+            ],
             'address',
             'contact_phone',
         ],

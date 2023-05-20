@@ -1,11 +1,12 @@
 <?php
 
-namespace app\common\components\request;
+namespace common\components\request;
 
-use app\common\components\Utilyty;
+use common\components\Utilyty;
 use common\models\active_records\Request;
 use common\models\active_records\RequestStatus;
 use Yii;
+use yii\db\Exception;
 
 class RequestCreator implements RequestCreatorInterface
 {
@@ -23,8 +24,13 @@ class RequestCreator implements RequestCreatorInterface
         $this->request->deleted = 0;
 
         if (!$this->request->save()) {
-            return false;
+            echo '<pre>';
+            var_dump($this->request->getErrors());
+            echo '</pre>';
+            die;
         }
+
+
 
         return true;
     }

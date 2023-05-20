@@ -4,14 +4,13 @@ use yii\bootstrap5\Breadcrumbs;
 use yii\helpers\Html;
 
 /** @var yii\web\View $this */
-/** @var common\models\active_records\Store $model */
-/** @var array $cityIdsAndNames */
+/** @var common\models\active_records\User $model */
 
-$this->title = 'Создание склада';
-$this->params['breadcrumbs'][] = ['label' => 'Склады', 'url' => ['index']];
+$this->title = 'Добавить пользователя';
+$this->params['breadcrumbs'][] = ['label' => 'Пользователи', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="store-create">
+<div class="user-create">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
@@ -21,7 +20,6 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <?= $this->render('_form', [
         'model' => $model,
-        'cityIdsAndNames' => $cityIdsAndNames,
     ]) ?>
 
 </div>

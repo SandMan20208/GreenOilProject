@@ -3,6 +3,7 @@
 namespace common\models\active_records;
 
 use Yii;
+use yii\db\ActiveQuery;
 
 /**
  * This is the model class for table "store".
@@ -12,6 +13,7 @@ use Yii;
  * @property int $city_id
  *
  * @property StoreContainer[] $storeContainers
+ * @property City $city
  */
 class Store extends \yii\db\ActiveRecord
 {
@@ -43,7 +45,7 @@ class Store extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'name' => 'Название',
-            'city_id' => 'ID склада'
+            'city_id' => 'ID города'
         ];
     }
 
@@ -55,5 +57,10 @@ class Store extends \yii\db\ActiveRecord
     public function getStoreContainers()
     {
         return $this->hasMany(StoreContainer::class, ['store_id' => 'id']);
+    }
+
+    public function getCity()
+    {
+        return $this->hasOne(City::class, ['id' => 'city_id']);
     }
 }

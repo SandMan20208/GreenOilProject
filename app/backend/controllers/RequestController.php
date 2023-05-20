@@ -2,7 +2,7 @@
 
 namespace backend\controllers;
 
-use app\common\components\request\RequestCreator;
+use common\components\request\RequestCreator;
 use common\models\active_records\Request;
 use common\models\active_records\RequestStatus;
 use common\models\active_records\Restaurant;

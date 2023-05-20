@@ -48,10 +48,10 @@ class Restaurant extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'name' => 'Name',
-            'city_id' => 'City ID',
-            'address' => 'Address',
-            'contact_phone' => 'Contact Phone',
+            'name' => 'Название',
+            'city_id' => 'ID Города',
+            'address' => 'Адрес',
+            'contact_phone' => 'Телефон',
         ];
     }
 

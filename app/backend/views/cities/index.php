@@ -1,6 +1,7 @@
 <?php
 
 use common\models\active_records\City;
+use yii\bootstrap5\Breadcrumbs;
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\grid\ActionColumn;
@@ -15,6 +16,10 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="cities-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
+
+    <?= Breadcrumbs::widget([
+        'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
+    ]) ?>
 
     <p>
         <?= Html::a('Добавить город', ['create'], ['class' => 'btn btn-success']) ?>

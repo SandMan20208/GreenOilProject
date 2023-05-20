@@ -12,8 +12,6 @@ class m230502_155103_create_table_request_document extends Migration
      */
     public function safeUp()
     {
-        $transaction = Yii::$app->db->beginTransaction();
-        try {
             $this->createTable('request_document', [
                 'id' => $this->primaryKey(),
                 'file_path' => $this->string(300)->notNull(),
@@ -40,13 +38,6 @@ class m230502_155103_create_table_request_document extends Migration
                 null,
                 'CASCADE'
             );
-            $transaction->commit();
-        } catch (\Throwable $exception) {
-            echo $exception->getMessage();
-            $transaction->rollBack();
-            return false;
-        }
-        return true;
     }
 
     /**
@@ -54,18 +45,9 @@ class m230502_155103_create_table_request_document extends Migration
      */
     public function safeDown()
     {
-        $transaction = Yii::$app->db->beginTransaction();
-        try {
             $this->dropForeignKey('fk-request_document-document_type_id', 'request_document');
             $this->dropForeignKey('fk-request_document-request_id', 'request_document');
             $this->dropTable('request_document');
-            $transaction->commit();
-        } catch (\Throwable $exception) {
-            $transaction->rollBack();
-            echo $exception->getMessage();
-            return false;
-        }
-        return true;
     }
 
     /*
