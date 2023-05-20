@@ -16,10 +16,9 @@ class m230502_155103_create_table_request_document extends Migration
         try {
             $this->createTable('request_document', [
                 'id' => $this->primaryKey(),
-                'file_path' => $this->string(300),
-                'document_type_id' => $this->integer(),
-                'request_id' => $this->integer()
-
+                'file_path' => $this->string(300)->notNull(),
+                'document_type_id' => $this->integer()->notNull(),
+                'request_id' => $this->integer()->notNull(),
             ]);
 
             $this->addForeignKey(

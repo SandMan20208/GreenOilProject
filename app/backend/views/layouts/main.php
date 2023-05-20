@@ -38,7 +38,7 @@ AppAsset::register($this);
                     <?= Html::a('Заявки', ['request/index'], ['class' => 'nav-link text-white nav-hover']) ?>
                 </li>
                 <li>
-                    <?= Html::a('Склады', ['request/index'], ['class' => 'nav-link text-white nav-hover']) ?>
+                    <?= Html::a('Склады', ['store/index'], ['class' => 'nav-link text-white nav-hover']) ?>
                 </li>
                 <li>
                     <?= Html::a('Тара', ['container/index'], ['class' => 'nav-link text-white nav-hover']) ?>

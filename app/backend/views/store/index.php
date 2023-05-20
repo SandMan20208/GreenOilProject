@@ -1,6 +1,7 @@
 <?php
 
 use common\models\active_records\Store;
+use yii\bootstrap5\Breadcrumbs;
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\grid\ActionColumn;
@@ -9,15 +10,19 @@ use yii\widgets\Pjax;
 /** @var yii\web\View $this */
 /** @var yii\data\ActiveDataProvider $dataProvider */
 
-$this->title = 'Stores';
+$this->title = 'Склады';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="store-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
+    <?= Breadcrumbs::widget([
+        'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
+    ]) ?>
+
     <p>
-        <?= Html::a('Create Store', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Создать склад', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?php Pjax::begin(); ?>

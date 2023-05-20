@@ -15,9 +15,9 @@ class m230304_145625_create_table_restaurant extends Migration
         $this->createTable('restaurant',
             [
                 'id' => $this->primaryKey(),
-                'name' => $this->string(100),
-                'city_id' => $this->integer(4),
-                'address' => $this->string(150),
+                'name' => $this->string(100)->notNull(),
+                'city_id' => $this->integer(4)->notNull(),
+                'address' => $this->string(150)->notNull(),
                 'contact_phone' => $this->string(12),
             ]
         );

@@ -14,11 +14,11 @@ class m230502_160625_create_table_role_user extends Migration
     {
         $transaction = Yii::$app->db->beginTransaction();
         try {
-//            $this->createTable('role_user', [
-//                'id' => $this->primaryKey(),
-//                'role_id' => $this->integer(),
-//                'user_id' => $this->integer()
-//            ]);
+            $this->createTable('role_user', [
+                'id' => $this->primaryKey(),
+                'role_id' => $this->integer()->notNull(),
+                'user_id' => $this->integer()->notNull(),
+            ]);
 
             $this->addForeignKey(
                 'fk-role_user-role_id',

@@ -15,9 +15,9 @@ class m230304_151111_create_table_container extends Migration
         $this->createTable('container',
             [
                 'id' => $this->primaryKey(),
-                'name' => $this->string(50),
-                'weight' => $this->integer(3),
-                'volume' => $this->integer(3)
+                'name' => $this->string(50)->notNull(),
+                'weight' => $this->integer(3)->notNull(),
+                'volume' => $this->integer(3)->notNull(),
             ]
         );
     }

@@ -17,8 +17,8 @@ class m230304_152755_create_table_store_container extends Migration
             $this->createTable('store_container',
                 [
                     'id' => $this->primaryKey(),
-                    'store_id' => $this->integer(4),
-                    'container_id' => $this->integer(4),
+                    'store_id' => $this->integer(4)->notNull(),
+                    'container_id' => $this->integer(4)->notNull(),
                     'count_of_full' => $this->integer(4),
                     'count_of_empty' => $this->integer(4)
                 ]

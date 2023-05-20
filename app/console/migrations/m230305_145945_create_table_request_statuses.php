@@ -15,8 +15,8 @@ class m230305_145945_create_table_request_statuses extends Migration
             $this->createTable('request_status',
                 [
                     'id' => $this->primaryKey(),
-                    'status' => $this->string(25),
-                    'status_name' => $this->string(25),
+                    'status' => $this->string(25)->notNull(),
+                    'status_name' => $this->string(25)->notNull(),
                 ]
             );
     }

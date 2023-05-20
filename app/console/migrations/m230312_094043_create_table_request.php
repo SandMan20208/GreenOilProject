@@ -14,39 +14,39 @@ class m230312_094043_create_table_request extends Migration
     {
         $transaction = Yii::$app->db->beginTransaction();
         try {
-//            $this->createTable('request',
-//                [
-//                    'id' => $this->primaryKey(),
-//                    'restaurant_id' => $this->integer(),
-//                    'user_id' => $this->integer(),
-//                    'status_id' => $this->integer(),
-//                    'date_created' => $this->integer(),
-//                    'planned_visit_date' => $this->dateTime(),
-//                    'close_date' => $this->dateTime(),
-//                    'deleted' => $this->integer(4),
-//                    'comment' => $this->string(150)
-//                ]
-//            );
-//
-//            $this->addForeignKey(
-//                'fk-request-request_status_id',
-//                'request',
-//                'status_id',
-//                'request_status',
-//                'id',
-//                null,
-//                'CASCADE'
-//            );
-//
-//            $this->addForeignKey(
-//                'fk-request-restaurant_id',
-//                'request',
-//                'restaurant_id',
-//                'restaurant',
-//                'id',
-//                null,
-//                'CASCADE'
-//            );
+            $this->createTable('request',
+                [
+                    'id' => $this->primaryKey(),
+                    'restaurant_id' => $this->integer()->notNull(),
+                    'user_id' => $this->integer(),
+                    'status_id' => $this->integer()->notNull(),
+                    'date_created' => $this->integer(),
+                    'planned_visit_date' => $this->dateTime(),
+                    'close_date' => $this->dateTime(),
+                    'deleted' => $this->integer(4),
+                    'comment' => $this->string(150)
+                ]
+            );
+
+            $this->addForeignKey(
+                'fk-request-request_status_id',
+                'request',
+                'status_id',
+                'request_status',
+                'id',
+                null,
+                'CASCADE'
+            );
+
+            $this->addForeignKey(
+                'fk-request-restaurant_id',
+                'request',
+                'restaurant_id',
+                'restaurant',
+                'id',
+                null,
+                'CASCADE'
+            );
 
             $this->addForeignKey(
                 'fk-request-user_id',

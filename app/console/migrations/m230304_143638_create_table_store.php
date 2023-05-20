@@ -16,6 +16,7 @@ class m230304_143638_create_table_store extends Migration
             [
                 'id' => $this->primaryKey(),
                 'name' => $this->string(30)->notNull(),
+                'city_id' => $this->integer()->notNull(),
             ]
         );
     }

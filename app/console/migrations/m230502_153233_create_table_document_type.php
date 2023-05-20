@@ -14,7 +14,7 @@ class m230502_153233_create_table_document_type extends Migration
     {
         $this->createTable('document_type', [
            'id' => $this->primaryKey(),
-           'type' => $this->string(100)
+           'type' => $this->string(100)->notNull()
         ]);
     }
 

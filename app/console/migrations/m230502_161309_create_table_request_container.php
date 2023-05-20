@@ -12,15 +12,15 @@ class m230502_161309_create_table_request_container extends Migration
      */
     public function safeUp()
     {
-        $transaction = Yii::$app->db->beginTransaction();
         try {
             $this->createTable('request_container', [
                 'id' => $this->primaryKey(),
-                'request_id' => $this->integer(),
-                'container_id' => $this->integer(),
-                'type' => 'ENUM(`take`, `give`) NOT NULL DEFAULT `yes`',
-                'container_count' => $this->integer()
+                'request_id' => $this->integer()->notNull(),
+                'container_id' => $this->integer()->notNull(),
+                'container_count' => $this->integer()->notNull()
             ]);
+
+            $this->addColumn('request_container', 'type',"ENUM('take', 'give') NOT NULL DEFAULT 'take'");
 
             $this->addForeignKey(
                 'fk-request_container-request_id',
@@ -41,9 +41,7 @@ class m230502_161309_create_table_request_container extends Migration
                 null,
                 'CASCADE'
             );
-            $transaction->commit();
         } catch (\Throwable $exception) {
-            $transaction->rollBack();
             echo $exception->getMessage();
             return false;
         }
