@@ -106,4 +106,15 @@ class Request extends \yii\db\ActiveRecord
     {
         return $this->hasOne(User::class, ['id' => 'user_id']);
     }
+
+    public static function getRequestsByUserId(int $id): array
+    {
+        return Request::findAll(['user_id' => $id, 'status_id' => RequestStatus::STATUS_PROCESSED_ID]);
+    }
+
+    public function close(): void
+    {
+        $this->status_id = RequestStatus::STATUS_CLOSED_ID;
+        $this->save();
+    }
 }

@@ -71,8 +71,20 @@ class SiteController extends Controller
     public function actionIndex()
     {
         $this->layout = 'blank';
-        $loginForm = new LoginForm();
-        return $this->render('index', ['loginForm' => $loginForm]);
+
+        if (!Yii::$app->user->isGuest) {
+            return $this->goHome();
+        }
+
+        $loginModel = new LoginForm();
+        if ($loginModel->load(Yii::$app->request->post()) && $loginModel->login()) {
+            return $this->goBack();
+        }
+
+        return $this->render('index', [
+                'loginForm' => $loginModel,
+            ]
+        );
     }
 
     /**

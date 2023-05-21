@@ -1,21 +1,33 @@
 <?php
 
-use common\models\active_records\Withdrawal;
-use yii\widgets\ActiveForm;
+use common\models\active_records\Request;
+use yii\helpers\Html;
 
-/** @var Withdrawal $withdrawalForm */
-?>
-<h1>Здесь будет функционал курьера</h1>
+/** @var Request $request */
 
-<?php
-$form = ActiveForm::begin([
-    'id' => 'withdrawal-form',
-    'options' => ['class' => 'form-horizontal'],])
+$userId = Yii::$app->user->getId();
+$requests = Request::getRequestsByUserId($userId);
 ?>
 
-<?= $form->field($withdrawalForm, 'containers_given') ?>
-<?= $form->field($withdrawalForm, 'containers_taken') ?>
-<?= $form->field($withdrawalForm, 'weight_in_kg') ?>
+<div class="mobile-container">
+    <h1>Заявки</h1>
+    <?php foreach ($requests as $request):?>
+    <div class="request_container">
+        <div class="request_id">
+            <h2>Заявка №<?= $request->id ?></h2>
+        </div>
+        <div class="request_info">
+                <p><b>Заведение:</b> <?= $request->restaurant->name ?></p>
+                <p><b>Адрес:</b> <?= $request->restaurant->address ?></p>
+                <p><b>Телефон:</b> <a href="tel:"><?= $request->restaurant->contact_phone ?></a></p>
+                <p><b>Дата забора:</b> <?= $request->planned_visit_date ?></p>
+        </div>
+        <div class="request-button-group">
+            <?= Html::a('Закрыть', ['request/move-containers', 'id' => $request->id], ['class' => 'btn btn-success'])?>
+            <?= Html::a('Информация', ['request/view', 'id' => $request->id], ['class' => 'btn button_close'])?>
+        </div>
+    </div>
+    <?php endforeach; ?>
 
 
-<?php ActiveForm::end() ?>
+</div>

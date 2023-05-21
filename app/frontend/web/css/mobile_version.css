@@ -1,0 +1,59 @@
+h1 {
+    font-size: 1.5rem;
+}
+h2 {
+    font-size: 1.2rem;
+}
+p {
+    margin: 0;
+    padding: 0;
+}
+
+.mobile-container {
+    margin: 20px 10px;
+}
+
+.request_container {
+    padding: 8px 10px;
+    margin: 10px 0;
+    border-color: #047409 #0a7d11 #05640a;
+    border-radius: 5px;
+    background: linear-gradient(#e9f6f6, #cff4f2) #c4ece7;
+    color: #004300;
+    /*text-shadow: 1px 0 1px rgba(0, 0, 0, 0.2), 0 1px 1px rgba(0, 0, 0, 0.2), -1px 0 1px rgba(0, 0, 0, 0.2), 0 -1px 1px rgba(0, 0, 0, 0.2);*/
+}
+
+.request_info {
+    color: #5f5e5e;
+}
+
+.button_close {
+    background: linear-gradient(#f1ad1d, #ea9d37) #df9939;
+    border-color: #fbc540 #da8423 #da8423;
+    color: white;
+}
+
+.request-button-group {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 10px 0;
+}
+
+.request-close-button {
+    width: 100%;
+    margin: 20px 10px 10px 10px;
+}
+
+.user-container{
+    margin: 3px 10px;
+    color: white;
+}
+.brand-name {
+    margin: 3px 10px;
+}
+.user_icon {
+    margin-right: 5px;
+    width: 25px;
+    height: 25px;
+}

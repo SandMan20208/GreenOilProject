@@ -17,10 +17,11 @@ class m230502_161309_create_table_request_container extends Migration
                 'id' => $this->primaryKey(),
                 'request_id' => $this->integer()->notNull(),
                 'container_id' => $this->integer()->notNull(),
-                'container_count' => $this->integer()->notNull()
+                'take' => $this->integer(),
+                'weight' => $this->integer(),
+                'volume' => $this->integer(),
+                'give' => $this->integer(),
             ]);
-
-            $this->addColumn('request_container', 'type',"ENUM('take', 'give') NOT NULL DEFAULT 'take'");
 
             $this->addForeignKey(
                 'fk-request_container-request_id',

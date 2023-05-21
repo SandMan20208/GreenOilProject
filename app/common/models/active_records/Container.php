@@ -3,6 +3,7 @@
 namespace common\models\active_records;
 
 use Yii;
+use yii\helpers\ArrayHelper;
 
 /**
  * This is the model class for table "container".
@@ -57,5 +58,11 @@ class Container extends \yii\db\ActiveRecord
     public function getStoreContainers()
     {
         return $this->hasMany(StoreContainer::class, ['container_id' => 'id']);
+    }
+
+    public static function getContainersIdsAndNames(): array
+    {
+        $users = Container::find()->all();
+        return ArrayHelper::map($users, 'id', 'name');
     }
 }
