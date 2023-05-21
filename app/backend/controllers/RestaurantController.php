@@ -105,6 +105,7 @@ class RestaurantController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+        $cityIdsAndNames = City::getCityIdsAndNames();
 
         if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
@@ -112,6 +113,7 @@ class RestaurantController extends Controller
 
         return $this->render('update', [
             'model' => $model,
+            'cityIdsAndNames' => $cityIdsAndNames,
         ]);
     }
 
