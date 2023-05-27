@@ -3,6 +3,7 @@
 namespace common\models\active_records;
 
 use Yii;
+use yii\db\ActiveQuery;
 use yii\helpers\ArrayHelper;
 
 /**
@@ -15,6 +16,7 @@ use yii\helpers\ArrayHelper;
  * @property string|null $contact_phone
  *
  * @property City $city
+ * @property RestaurantContainer[] $restaurantContainer
  */
 class Restaurant extends \yii\db\ActiveRecord
 {
@@ -60,9 +62,14 @@ class Restaurant extends \yii\db\ActiveRecord
      *
      * @return \yii\db\ActiveQuery
      */
-    public function getCity()
+    public function getCity(): ActiveQuery
     {
         return $this->hasOne(City::class, ['id' => 'city_id']);
+    }
+
+    public function getRestaurantContainer(): ActiveQuery
+    {
+        return $this->hasMany(RestaurantContainer::class, ['id' => 'restaurant_id']);
     }
 
     public static function getRestaurantsIdsAndNames(): array

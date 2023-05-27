@@ -98,3 +98,5 @@ $this->params['breadcrumbs'][] = $this->title;
 </div>
 <?php $closeForm::end() ?>
 <?php Pjax::end() ?>
+<br>
+<br>
