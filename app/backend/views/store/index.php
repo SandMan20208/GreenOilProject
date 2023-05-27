@@ -7,6 +7,7 @@ use yii\helpers\Url;
 use yii\grid\ActionColumn;
 use yii\grid\GridView;
 use yii\widgets\Pjax;
+
 /** @var yii\web\View $this */
 /** @var yii\data\ActiveDataProvider $dataProvider */
 
@@ -35,17 +36,31 @@ $this->params['breadcrumbs'][] = $this->title;
             'id',
             'name',
             'city_id' => [
-                    'label' => 'Город',
-                    'value' => function($store) {
-                        /** @var Store $store */
-                        return $store->city->name;
-                    }
+                'label' => 'Город',
+                'value' => function ($store) {
+                    /** @var Store $store */
+                    return $store->city->name;
+                }
+            ],
+            [
+                'label' => 'Пустая тара',
+                'value' => function($store) {
+                    /** @var Store $store */
+                    return $store->getCountEmptyContainers();
+                }
+            ],
+            [
+                'label' => 'Полная тара',
+                'value' => function($store) {
+                    /** @var Store $store */
+                    return $store->getCountFullContainers();
+                }
             ],
             [
                 'class' => ActionColumn::className(),
                 'urlCreator' => function ($action, Store $model, $key, $index, $column) {
                     return Url::toRoute([$action, 'id' => $model->id]);
-                 }
+                }
             ],
         ],
     ]); ?>

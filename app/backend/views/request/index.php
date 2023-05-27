@@ -57,9 +57,15 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
             'date_created',
             'planned_visit_date',
-            //'close_date',
-            //'deleted',
-            //'comment',
+            [
+                'format' => 'raw',
+                'value' => function($model) {
+                    return Html::a(
+                        'Закрыть',
+                        Url::to(['request/close-request', 'id' => $model->id]),
+                    );
+                }
+            ],
             [
                 'class' => ActionColumn::className(),
                 'urlCreator' => function ($action, Request $model, $key, $index, $column) {

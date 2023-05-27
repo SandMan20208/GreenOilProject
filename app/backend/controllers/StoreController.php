@@ -3,7 +3,9 @@
 namespace backend\controllers;
 
 use common\models\active_records\City;
+use common\models\active_records\Container;
 use common\models\active_records\Store;
+use common\models\active_records\StoreContainer;
 use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -58,6 +60,32 @@ class StoreController extends Controller
         ]);
     }
 
+    public function actionAddContainers($storeId)
+    {
+        if ($this->request->isPost) {
+            $storeContainer = StoreContainer::findOne($this->request->post('StoreContainer')['id']);
+            if ($storeContainer) {
+                $storeContainer->load($this->request->post());
+                $storeContainer->addContainers();
+                $storeContainer->save();
+            }
+        }
+        $store = Store::findOne($storeId);
+
+        if (!$store) {
+            //TODO Сделать сообщение о том, что склад не найден
+            return $this->redirect('index');
+        }
+
+        $storeContainers = $store->storeContainers;
+        $containerIdsAndNames = Container::getContainersIdsAndNames();
+        return $this->render('add_containers', [
+            'storeContainers' => $storeContainers,
+            'containerIdsAndNames' => $containerIdsAndNames,
+            'store' => $store,
+        ]);
+    }
+
     /**
      * Displays a single Store model.
      * @param int $id ID
@@ -95,13 +123,6 @@ class StoreController extends Controller
         ]);
     }
 
-    /**
-     * Updates an existing Store model.
-     * If update is successful, the browser will be redirected to the 'view' page.
-     * @param int $id ID
-     * @return string|\yii\web\Response
-     * @throws NotFoundHttpException if the model cannot be found
-     */
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
@@ -117,13 +138,6 @@ class StoreController extends Controller
         ]);
     }
 
-    /**
-     * Deletes an existing Store model.
-     * If deletion is successful, the browser will be redirected to the 'index' page.
-     * @param int $id ID
-     * @return \yii\web\Response
-     * @throws NotFoundHttpException if the model cannot be found
-     */
     public function actionDelete($id)
     {
         $this->findModel($id)->delete();

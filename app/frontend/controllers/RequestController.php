@@ -32,7 +32,7 @@ class RequestController extends Controller
             $requestContainer->request_id = $id;
             if ($requestContainer->save()) {
                 $request = $requestContainer->request;
-                $request->close();
+                $request->executed();
                 return $this->redirect('index');
             }
         }
@@ -43,16 +43,6 @@ class RequestController extends Controller
             'requestId' => $id,
             'containerIdsAndNames' => $containerIdsAndNames,
             'requestContainer' => $requestContainer,
-        ]);
-    }
-
-    public function actionCloseRequest(int $id)
-    {
-        $request = Request::findOne($id);
-
-
-        return $this->render('close_request', [
-            'request' => $request,
         ]);
     }
 }

@@ -18,6 +18,7 @@ class m230312_094043_create_table_request extends Migration
                 [
                     'id' => $this->primaryKey(),
                     'restaurant_id' => $this->integer()->notNull(),
+                    'store_id' => $this->integer()->notNull(),
                     'user_id' => $this->integer(),
                     'status_id' => $this->integer()->notNull(),
                     'date_created' => $this->dateTime(),
@@ -43,6 +44,16 @@ class m230312_094043_create_table_request extends Migration
                 'request',
                 'restaurant_id',
                 'restaurant',
+                'id',
+                null,
+                'CASCADE'
+            );
+
+            $this->addForeignKey(
+                'fk-request-store_id',
+                'request',
+                'store_id',
+                'store',
                 'id',
                 null,
                 'CASCADE'

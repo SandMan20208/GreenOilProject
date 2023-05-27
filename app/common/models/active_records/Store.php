@@ -17,6 +17,9 @@ use yii\db\ActiveQuery;
  */
 class Store extends \yii\db\ActiveRecord
 {
+    const COUNT_OF_EMPTY = 'count_of_empty';
+    const COUNT_OF_FULL = 'count_of_full';
+
     /**
      * {@inheritdoc}
      */
@@ -62,5 +65,25 @@ class Store extends \yii\db\ActiveRecord
     public function getCity()
     {
         return $this->hasOne(City::class, ['id' => 'city_id']);
+    }
+
+    public function getCountFullContainers(): int
+    {
+        return $this->getCountContainers(self::COUNT_OF_FULL);
+    }
+
+    public function getCountEmptyContainers(): int
+    {
+        return $this->getCountContainers(self::COUNT_OF_EMPTY);
+    }
+    private function getCountContainers(string $countOf): int
+    {
+        $storeContainers = StoreContainer::findAll(['store_id' => $this->id]);
+        $count = 0;
+        foreach ($storeContainers as $storeContainer) {
+            $count += $storeContainer->$countOf;
+        }
+
+        return $count;
     }
 }

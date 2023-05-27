@@ -44,7 +44,6 @@ class RequestContainer extends \yii\db\ActiveRecord
         ];
     }
 
-    //TODO сделать валидатор если заполено вес и объем -> проверить поле Забрал шт.
     public function validateMoveContainer(): void
     {
         if(empty($this->take) && empty($this->give))
@@ -52,6 +51,11 @@ class RequestContainer extends \yii\db\ActiveRecord
             $error = 'Заполните одно из полей';
             $this->addError('take', $error);
             $this->addError('give', $error);
+        }
+
+        if (empty($this->take) && (!empty($this->weight) || !empty($this->volume))) {
+            $error = 'Заполните поле';
+            $this->addError('take', $error);
         }
     }
 
