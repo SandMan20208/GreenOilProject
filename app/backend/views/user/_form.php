@@ -22,6 +22,8 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'car_model')->textInput(['maxlength' => true]) ?>
 
+    <?= $form->field($model, 'role_id')->dropDownList(['Курьер', 'Оператор ИС']) ?>
+
     <br>
 
     <div class="form-group">

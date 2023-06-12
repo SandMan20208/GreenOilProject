@@ -17,6 +17,9 @@ class SiteController extends Controller
     /**
      * {@inheritdoc}
      */
+
+    public $layout = 'blank';
+
     public function behaviors()
     {
         return [
@@ -28,7 +31,7 @@ class SiteController extends Controller
                         'allow' => true,
                     ],
                     [
-                        'actions' => ['logout', 'index'],
+                        'actions' => ['logout'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -60,10 +63,6 @@ class SiteController extends Controller
      *
      * @return string
      */
-    public function actionIndex()
-    {
-        return $this->render('index');
-    }
 
     /**
      * Login action.
@@ -72,20 +71,15 @@ class SiteController extends Controller
      */
     public function actionLogin()
     {
-//        if (!Yii::$app->user->isGuest) {
-//            return $this->goHome();
-//        }
-//
-//        $this->layout = 'blank';
-//
-//        $model = new LoginForm();
-//        if ($model->load(Yii::$app->request->post()) && $model->login()) {
-//            return $this->goBack();
-//        }
-//
-//        $model->password = '';
+        if (!Yii::$app->user->isGuest) {
+            return $this->goHome();
+        }
+
         $loginForm = new LoginForm();
-        $this->layout = 'blank';
+        if ($loginForm->load(Yii::$app->request->post()) && $loginForm->login()) {
+            return $this->redirect('/admin/index');
+        }
+
         return $this->render('login', [
             'loginForm' => $loginForm,
         ]);
@@ -100,6 +94,6 @@ class SiteController extends Controller
     {
         Yii::$app->user->logout();
 
-        return $this->goHome();
+        return $this->redirect('/site/login');
     }
 }

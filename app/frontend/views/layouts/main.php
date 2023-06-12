@@ -26,6 +26,13 @@ $user = User::findOne(Yii::$app->user->getId());
 <nav class="navbar navbar-dark bg-dark">
     <div class="navbar-brand brand-name">GreenOil</div>
     <?= UserWidget::widget(['user' => $user]) ?>
+    <?= Html::beginForm(['site/logout'], 'post', ['class' => 'd-flex'])
+    . Html::submitButton(
+        'Выход',
+        ['class' => 'btn-logout nav-hover']
+    )
+    . Html::endForm()
+    ?>
 </nav>
 <main role="main" class="flex-shrink-0">
 

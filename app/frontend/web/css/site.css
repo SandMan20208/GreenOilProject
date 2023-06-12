@@ -112,3 +112,13 @@ a.desc:after {
     max-width: 400px;
     height: 350px;
 }
+
+.btn-logout {
+    padding: 8px 16px;
+    border-radius: 5px;
+    color: white;
+    background-color: rgba(255, 255, 255, 0);
+    border: none;
+    width: 100%;
+    text-align: left;
+}

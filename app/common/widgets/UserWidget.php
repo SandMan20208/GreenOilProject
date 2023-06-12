@@ -2,18 +2,25 @@
 
 namespace common\widgets;
 
-use common\models\active_records\User;
+use Yii;
 use yii\base\Widget;
 
 class UserWidget extends Widget
 {
-    public User $user;
+    public $user;
+
+    public function __construct($config = [])
+    {
+        $this->user = Yii::$app->user->identity;
+        parent::__construct($config);
+    }
 
     public function run()
     {
-       return "<div class=\"user-container\">
+        $username = $this->user->login ?? 'Неизвестный';
+        return "<div class=\"user-container\">
                     <img class=\"user_icon\" src=\"/image/user_icon.png\">
-                    {$this->user->name}
+                    $username
                </div>";
     }
 }

@@ -6,6 +6,7 @@
 
 use backend\assets\AppAsset;
 use common\widgets\Alert;
+use common\widgets\UserWidget;
 use yii\bootstrap5\Breadcrumbs;
 use yii\bootstrap5\Html;
 use yii\bootstrap5\Nav;
@@ -29,6 +30,9 @@ AppAsset::register($this);
             <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
                 <span class="fs-4">GreenOil</span>
             </a>
+            <div>
+                <?= UserWidget::widget()?>
+            </div>
             <hr>
             <ul class="nav nav-pills flex-column mb-auto">
                 <li class="nav-item">
@@ -56,6 +60,13 @@ AppAsset::register($this);
                     <?= Html::a('Отчеты', ['report/index'], ['class' => 'nav-link text-white nav-hover']) ?>
                 </li>
             </ul>
+            <?= Html::beginForm(['site/logout'], 'post', ['class' => 'd-flex'])
+            . Html::submitButton(
+                'Выход',
+                ['class' => 'btn-logout nav-hover']
+            )
+            . Html::endForm()
+            ?>
         </div>
     </div>
     <?php $this->beginBody() ?>

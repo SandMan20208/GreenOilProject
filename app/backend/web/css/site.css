@@ -155,3 +155,25 @@ a.desc:after {
     border-color: #2ba723 #000 #1f861e;
 }
 
+.user-container {
+    margin: 10px 0;
+    color: white;
+    font-size: 18px;
+}
+
+.user_icon {
+    margin-right: 5px;
+    width: 30px;
+    height: 30px;
+}
+
+.btn-logout {
+    padding: 8px 16px;
+    border-radius: 5px;
+    color: white;
+    background-color: rgba(255, 255, 255, 0);
+    border: none;
+    width: 100%;
+    text-align: left;
+}
+
