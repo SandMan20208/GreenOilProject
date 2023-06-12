@@ -71,4 +71,13 @@ class RequestDocument extends \yii\db\ActiveRecord
     {
         return $this->hasOne(Request::class, ['id' => 'request_id']);
     }
+
+    public function saveFilePath(string $filePath, int $requestId)
+    {
+        $this->file_path = $filePath;
+        $this->request_id = $requestId;
+        $this->document_type_id = 1;
+
+        $this->save();
+    }
 }
